@@ -25,13 +25,14 @@ package com.dealfaro.luca.lclicker;
         Button b = (Button) v;
         String t = b.getText().toString();
         TextView tv = (TextView) findViewById(R.id.textView);
-        phoneNum.add(t);
-        String values = "";
-        for(int i = 0; i < phoneNum.size(); ++i) {
-            values += phoneNum.get(i);
-            if(i > 12) break;
+        if(phoneNum.size() <= 12){
+            phoneNum.add(t);
+            String values = "";
+            for(int i = 0; i < phoneNum.size(); ++i) {
+                values += phoneNum.get(i);
+            }
+            tv.setText(values);
         }
-        tv.setText(values);
     }
 
     public void clickDel(View v){

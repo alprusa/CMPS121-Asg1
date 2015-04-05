@@ -1,15 +1,19 @@
 package com.dealfaro.luca.lclicker;
 
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+    import android.os.Bundle;
+    import android.support.v7.app.ActionBarActivity;
+    import android.view.Menu;
+    import android.view.MenuItem;
+    import android.view.View;
+    import android.widget.Button;
+    import android.widget.TextView;
+
+    import java.util.ArrayList;
+    import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+    public class MainActivity extends ActionBarActivity {
+        private List<String> phoneNum = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +25,42 @@ public class MainActivity extends ActionBarActivity {
         Button b = (Button) v;
         String t = b.getText().toString();
         TextView tv = (TextView) findViewById(R.id.textView);
-        tv.setText(t);
+        phoneNum.add(t);
+        String values = "";
+        for(int i = 0; i < phoneNum.size(); ++i) {
+            values += phoneNum.get(i);
+            if(i > 12) break;
+        }
+        tv.setText(values);
     }
 
+    public void clickDel(View v){
+        if(phoneNum.size() > 0) {
+            Button b = (Button) v;
+            String t = b.getText().toString();
+            TextView tv = (TextView) findViewById(R.id.textView);
+            phoneNum.remove(phoneNum.size() - 1);
+            String values = "";
+            for(int i = 0; i < phoneNum.size(); ++i) {
+                values += phoneNum.get(i);
+            }
+            tv.setText(values);
+        }
+    }
+
+    public void clickCall(View v){
+         if(phoneNum.size() > 0) {
+             //String deleteValue = phoneNum.get(phoneNum.size() - 1);
+             Button b = (Button) v;
+             String t = b.getText().toString();
+             TextView tv = (TextView) findViewById(R.id.textView);
+             String values = "";
+            // for(int i = phoneNum.size() - 1; i > 0; ++i) {
+                 phoneNum.clear();
+             //}
+             tv.setText(values);
+         }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
